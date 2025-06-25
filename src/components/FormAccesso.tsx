@@ -28,6 +28,16 @@ const FormAccesso = () => {
         const token = await res.text()
         // QUI IL TOKEN VIENE SALVATO NEL LOCALSTORAGE
         localStorage.setItem("token", token)
+
+        //richiamo l'utente per andare a prendere l'avatar che mi servirà in Altro
+        const userRes = await fetch("http://localhost:8080/utente", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+
+        if (userRes.ok) {
+          const user = await userRes.json()
+          localStorage.setItem("utente", JSON.stringify(user))
+        }
         navigate("/altro")
       } else {
         const err = await res.text()
