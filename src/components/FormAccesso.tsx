@@ -26,6 +26,7 @@ const FormAccesso = () => {
 
       if (res.ok) {
         const token = await res.text()
+        // QUI IL TOKEN VIENE SALVATO NEL LOCALSTORAGE
         localStorage.setItem("token", token)
         navigate("/altro")
       } else {
