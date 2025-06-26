@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import "./AuthLayout.css"
-import { Link, useNavigate } from "react-router-dom"
-import { Form, Button } from "react-bootstrap"
+import React, { useState } from "react";
+import "./AuthLayout.css";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 
 const CreaClienti = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ragioneSociale: "",
     partitaIva: "",
@@ -20,21 +20,17 @@ const CreaClienti = () => {
     dataUltimoContatto: "",
     fatturatoAnnuale: "",
     sedeLegaleProvincia: "",
-  })
+  });
 
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const res = await fetch("http://localhost:8080/clienti", {
         method: "POST",
@@ -43,10 +39,10 @@ const CreaClienti = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
-      })
+      });
 
       if (res.ok) {
-        alert("Cliente creato con successo!")
+        alert("Cliente creato con successo!");
         setFormData({
           ragioneSociale: "",
           partitaIva: "",
@@ -62,19 +58,19 @@ const CreaClienti = () => {
           dataUltimoContatto: "",
           fatturatoAnnuale: "",
           sedeLegaleProvincia: "",
-        })
+        });
       } else {
-        const err = await res.text()
-        alert("Errore: " + err)
+        const err = await res.text();
+        alert("Errore: " + err);
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
-        alert("Errore di rete: " + err.message)
+        alert("Errore di rete: " + err.message);
       } else {
-        alert("Errore sconosciuto")
+        alert("Errore sconosciuto");
       }
     }
-  }
+  };
 
   return (
     <div className="auth-wrapper">
@@ -227,11 +223,7 @@ const CreaClienti = () => {
 
           <Form.Group className="mb-3" controlId="form-tipoCliente">
             <Form.Label className="form-label">Tipo Cliente</Form.Label>
-            <Form.Select
-              name="tipoCliente"
-              value={formData.tipoCliente}
-              onChange={handleChange}
-            >
+            <Form.Select name="tipoCliente" value={formData.tipoCliente} onChange={handleChange}>
               <option value="SRL">SRL</option>
               <option value="SPA">SPA</option>
               <option value="SAS">SAS</option>
@@ -240,9 +232,7 @@ const CreaClienti = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="form-sedeLegaleProvincia">
-            <Form.Label className="form-label">
-              Provincia (Sede Legale)
-            </Form.Label>
+            <Form.Label className="form-label">Provincia (Sede Legale)</Form.Label>
             <Form.Control
               type="text"
               name="sedeLegaleProvincia"
@@ -252,21 +242,56 @@ const CreaClienti = () => {
               placeholder="Inserisci la provincia"
             />
           </Form.Group>
-
+          <div className="ghost-container">
+            <div id="ghost">
+              <div id="red">
+                <div id="pupil"></div>
+                <div id="pupil1"></div>
+                <div id="eye"></div>
+                <div id="eye1"></div>
+                <div id="top0"></div>
+                <div id="top1"></div>
+                <div id="top2"></div>
+                <div id="top3"></div>
+                <div id="top4"></div>
+                <div id="st0"></div>
+                <div id="st1"></div>
+                <div id="st2"></div>
+                <div id="st3"></div>
+                <div id="st4"></div>
+                <div id="st5"></div>
+                <div id="an1"></div>
+                <div id="an2"></div>
+                <div id="an3"></div>
+                <div id="an4"></div>
+                <div id="an5"></div>
+                <div id="an6"></div>
+                <div id="an7"></div>
+                <div id="an8"></div>
+                <div id="an9"></div>
+                <div id="an10"></div>
+                <div id="an11"></div>
+                <div id="an12"></div>
+                <div id="an13"></div>
+                <div id="an14"></div>
+                <div id="an15"></div>
+                <div id="an16"></div>
+                <div id="an17"></div>
+                <div id="an18"></div>
+              </div>
+              <div id="shadow"></div>
+            </div>
+          </div>
           <Button type="submit" variant="danger" className="w-100">
             Crea Cliente
           </Button>
-          <Button
-            variant="secondary"
-            className="w-100 mt-3"
-            onClick={() => navigate("/clienti")}
-          >
+          <Button variant="info " className="w-100 mt-3 " onClick={() => navigate("/clienti")}>
             Vai all'elenco clienti
           </Button>
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreaClienti
+export default CreaClienti;
