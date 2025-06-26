@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom"
-import "./AuthLayout.css"
-import { Button, Badge } from "react-bootstrap"
+import { Link, useNavigate } from "react-router-dom";
+import "./AuthLayout.css";
+import { Button, Badge } from "react-bootstrap";
 
 const Altro = () => {
-  const utente = JSON.parse(localStorage.getItem("utente") || "{}")
-  const ruoli: string[] = utente.ruoli || []
+  const navigate = useNavigate();
+  const utente = JSON.parse(localStorage.getItem("utente") || "{}");
+  const ruoli: string[] = utente.ruoli || [];
 
   return (
     <div className="auth-wrapper">
@@ -41,6 +42,9 @@ const Altro = () => {
         </h1>
 
         <p className="text-white mt-4">Accesso effettuato con successo.</p>
+        <Button className="m-3 w-50 hover-btn " variant="outline-light" onClick={() => navigate("/clienti")}>
+          Elenco Clienti
+        </Button>
 
         {ruoli.includes("ADMIN") && (
           // QUI BISOGNA METTERE I BUTTON CHE PORTANO AGLI ENDPOINT CHE POSSONO FARE SOLO GLI ADMIN (e ci andrebbero anche quegli degli user dato che l'ADMIN tutto può)
@@ -50,7 +54,7 @@ const Altro = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Altro
+export default Altro;
