@@ -1,6 +1,6 @@
-import FormRegistrazione from "./FormRegistrazione"
-import "./AuthLayout.css"
-import { Link } from "react-router-dom"
+import FormRegistrazione from "./FormRegistrazione";
+import "./AuthLayout.css";
+import { Link } from "react-router-dom";
 
 const PaginaRegistrazione = () => {
   return (
@@ -13,7 +13,7 @@ const PaginaRegistrazione = () => {
         <FormRegistrazione />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PaginaRegistrazione
+export default PaginaRegistrazione;
