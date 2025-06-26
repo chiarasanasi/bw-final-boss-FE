@@ -65,7 +65,7 @@ const CreaClienti = () => {
         })
       } else {
         const err = await res.text()
-        alert("❌ Errore: " + err)
+        alert("Errore: " + err)
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
