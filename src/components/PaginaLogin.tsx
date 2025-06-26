@@ -1,7 +1,6 @@
-import { Container } from "react-bootstrap"
-import FormAccesso from "./FormAccesso"
-import "./AuthLayout.css"
-import { Link } from "react-router-dom"
+import FormAccesso from "./FormAccesso";
+import "./AuthLayout.css";
+import { Link } from "react-router-dom";
 
 const PaginaLogin = () => {
   return (
@@ -14,7 +13,7 @@ const PaginaLogin = () => {
         <FormAccesso />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PaginaLogin
+export default PaginaLogin;

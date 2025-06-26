@@ -43,8 +43,12 @@ const FormAccesso = () => {
         const err = await res.text();
         alert("Errore: " + err);
       }
-    } catch (err: any) {
-      alert("Errore di rete: " + err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert("Errore di rete: " + err.message);
+      } else {
+        alert("Errore di rete: " + String(err));
+      }
     }
   };
 
